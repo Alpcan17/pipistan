@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pipistan Demokrasi Cumhuriyeti</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #07111f;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* ÜST MENÜ */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 20px 7%;
+
+            background: rgba(7, 17, 31, 0.95);
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid #29435f;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #55a8ff;
+        }
+
+        .menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: #55a8ff;
+        }
+
+        /* ANA BAŞLIK */
+
+        .hero {
+            min-height: 85vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 80px 20px;
+
+            background:
+                radial-gradient(circle at center, #194b76 0%, transparent 38%),
+                linear-gradient(135deg, #06101d, #102b48);
+        }
+
+        .hero h1 {
+            font-size: clamp(60px, 10vw, 120px);
+            letter-spacing: 6px;
+        }
+
+        .hero h1 span {
+            color: #55a8ff;
+        }
+
+        .hero p {
+            margin-top: 25px;
+            color: #c3d3e4;
+            font-size: 23px;
+        }
+
+        .hero-button {
+            display: inline-block;
+
+            margin-top: 35px;
+            padding: 15px 35px;
+
+            background: #3185dc;
+            color: white;
+
+            text-decoration: none;
+            border-radius: 10px;
+
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-4px);
+            background: #4c9ff2;
+        }
+
+        /* GENEL */
+
+        section {
+            padding: 100px 8%;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .title small {
+            color: #55a8ff;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .title h2 {
+            font-size: 48px;
+            margin-top: 8px;
+        }
+
+        .title p {
+            color: #91a8c0;
+            margin-top: 10px;
+        }
+
+        /* ÜLKE BİLGİLERİ */
+
+        .info {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 35px 20px;
+
+            text-align: center;
+
+            background: #0e1d30;
+
+            border: 1px solid #294762;
+            border-radius: 18px;
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #55a8ff;
+        }
+
+        .icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #69b0ff;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #d0dbe7;
+            font-size: 19px;
+        }
+
+        /* ÜLKE TANITIMI */
+
+        .about {
+            background: #0a1727;
+        }
+
+        .about-box {
+            max-width: 1000px;
+            margin: auto;
+
+            padding: 55px;
+
+            text-align: center;
+
+            background: #0f2034;
+
+            border: 1px solid #2c4c68;
+            border-radius: 22px;
+        }
+
+        .about-box p {
+            color: #cad6e2;
+            font-size: 20px;
+            line-height: 1.9;
+        }
+
+        .leaders {
+            margin-top: 25px;
+            color: #64adff !important;
+            font-weight: bold;
+        }
+
+        /* SENEGAL BAYRAĞI */
+
+        .flag {
+            width: 300px;
+            height: 200px;
+
+            display: flex;
+
+            margin: 35px auto;
+
+            border-radius: 10px;
+            overflow: hidden;
+
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+
+        .green {
+            width: 33.33%;
+            background: #00853f;
+        }
+
+        .yellow {
+            width: 33.33%;
+            background: #fdef42;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .red {
+            width: 33.33%;
+            background: #e31b23;
+        }
+
+        .star {
+            color: #00853f;
+            font-size: 70px;
+        }
+
+        /* ŞEHİRLER */
+
+        .cities {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .city {
+            padding: 40px;
+
+            min-height: 220px;
+
+            background: linear-gradient(145deg, #112941, #0a1828);
+
+            border: 1px solid #294964;
+            border-radius: 20px;
+
+            transition: 0.3s;
+        }
+
+        .city:hover {
+            transform: scale(1.03);
+            border-color: #55a8ff;
+        }
+
+        .city h3 {
+            font-size: 30px;
+            color: #69b0ff;
+            margin-bottom: 12px;
+        }
+
+        .city p {
+            color: #aebfd0;
+        }
+
+        /* HARİTA */
+
+        .map-section {
+            background: #091625;
+        }
+
+        .map-text {
+            text-align: center;
+            font-size: 23px;
+            color: #c9d5e1;
+            margin-bottom: 35px;
+        }
+
+        .map {
+            max-width: 1450px;
+            margin: auto;
+
+            padding: 15px;
+
+            background: #0d1e31;
+
+            border: 1px solid #355574;
+            border-radius: 20px;
+        }
+
+        .map img {
+            width: 100%;
+            display: block;
+            border-radius: 12px;
+        }
+
+        /* EKONOMİ */
+
+        .economy {
+            background: #0b1929;
+        }
+
+        .money {
+            max-width: 900px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 25px;
+        }
+
+        .money-card {
+            padding: 45px;
+
+            text-align: center;
+
+            background: #102238;
+
+            border: 1px solid #2d4d69;
+            border-radius: 20px;
+        }
+
+        .money-card .money-icon {
+            font-size: 55px;
+        }
+
+        .money-card h3 {
+            color: #69b0ff;
+            font-size: 28px;
+            margin: 15px 0;
+        }
+
+        .money-card strong {
+            font-size: 30px;
+        }
+
+        /* PİPARTİ */
+
+        .party {
+            background:
+                radial-gradient(circle at center, #153c61, transparent 45%),
+                #081522;
+        }
+
+        .party-box {
+            max-width: 950px;
+            margin: auto;
+
+            padding: 60px;
+
+            text-align: center;
+
+            background: #10243a;
+
+            border: 1px solid #345675;
+            border-radius: 25px;
+        }
+
+        .party-logo {
+            width: 140px;
+            height: 140px;
+
+            margin: 0 auto 25px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 50%;
+
+            background: #3185dc;
+
+            font-size: 35px;
+            font-weight: bold;
+
+            box-shadow: 0 15px 45px rgba(49,133,220,0.35);
+        }
+
+        .party-box h2 {
+            font-size: 52px;
+            color: white;
+        }
+
+        .party-box p {
+            margin-top: 20px;
+
+            color: #c5d2df;
+
+            font-size: 21px;
+        }
+
+        /* TARİH */
+
+        .history {
+            max-width: 1000px;
+            margin: auto;
+
+            text-align: center;
+        }
+
+        .history p {
+            color: #c7d3df;
+            font-size: 21px;
+            line-height: 1.9;
+        }
+
+        .history-photo {
+            width: 100%;
+            max-width: 950px;
+
+            display: block;
+
+            margin: 40px auto 0;
+
+            border-radius: 20px;
+
+            border: 2px solid #345675;
+
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+        }
+
+        /* MARŞ */
+
+        .mars {
+            background: #0b1929;
+            text-align: center;
+        }
+
+        .mars-box {
+            max-width: 850px;
+            margin: auto;
+
+            padding: 50px;
+
+            background: #101f32;
+
+            border: 1px solid #304f6c;
+            border-radius: 20px;
+        }
+
+        .mars-box h3 {
+            color: #69b0ff;
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .mars-box p {
+            color: #c6d2df;
+            font-size: 19px;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 25px;
+        }
+
+        /* İLETİŞİM */
+
+        .contact {
+            text-align: center;
+            background: #091625;
+        }
+
+        .phone {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding: 25px 45px;
+
+            background: #10243a;
+
+            border: 1px solid #365979;
+            border-radius: 15px;
+
+            color: #69b0ff;
+
+            font-size: 28px;
+            font-weight: bold;
+
+            text-decoration: none;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 45px 20px;
+
+            background: #040b13;
+
+            color: #7e91a7;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* TELEFON */
+
+        @media (max-width: 900px) {
+
+            .info {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cities {
+                grid-template-columns: 1fr;
+            }
+
+            .menu {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            section {
+                padding: 70px 5%;
+            }
+
+            .hero h1 {
+                font-size: 55px;
+            }
+
+            .title h2 {
+                font-size: 36px;
+            }
+
+            .info,
+            .money {
+                grid-template-columns: 1fr;
+            }
+
+            .about-box,
+            .party-box,
+            .mars-box {
+                padding: 30px 20px;
+            }
+
+            .flag {
+                width: 240px;
+                height: 160px;
+            }
+
+            .phone {
+                font-size: 21px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- MENÜ -->
+
+<header class="navbar">
+
+    <div class="logo">
+        🇵🇵 <span>PİPİSTAN</span>
+    </div>
+
+    <nav class="menu">
+        <a href="#ulke">Ülke</a>
+        <a href="#sehirler">Şehirler</a>
+        <a href="#harita">Harita</a>
+        <a href="#ekonomi">Ekonomi</a>
+        <a href="#piparti">Piparti</a>
+        <a href="#mars">Marş</a>
+        <a href="#iletisim">İletişim</a>
+    </nav>
+
+</header>
+
+
+<!-- ANA SAYFA -->
+
+<section class="hero">
+
+    <div>
+
+        <h1>
+            PİPİ<span>STAN</span>
+        </h1>
+
+        <p>
+            Pipistan Demokrasi Cumhuriyeti
+        </p>
+
+        <a href="#ulke" class="hero-button">
+            Ülkeyi Keşfet ↓
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ÜLKE BİLGİLERİ -->
+
+<section id="ulke">
+
+    <div class="title">
+
+        <small>PİPİSTAN</small>
+
+        <h2>Ülke Bilgileri</h2>
+
+        <p>Pipistan hakkında temel bilgiler</p>
+
+    </div>
+
+
+    <div class="info">
+
+        <div class="card">
+            <div class="icon">👥</div>
+            <h3>Nüfus</h3>
+            <p>1 milyon</p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🏛️</div>
+            <h3>Başkent</h3>
+            <p>Pistanbul</p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">💰</div>
+            <h3>Para Birimi</h3>
+            <p>PiLirası</p>
+        </div>
+
+
+        <div class="card">
+            <div class="icon">🏛️</div>
+            <h3>Parti</h3>
+            <p>Piparti</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BAYRAK VE TANITIM -->
+
+<section class="about">
+
+    <div class="title">
+
+        <small>ÜLKE</small>
+
+        <h2>Pipistan Demokrasi Cumhuriyeti</h2>
+
+    </div>
+
+
+    <div class="about-box">
+
+        <!-- SENEGAL BAYRAĞI -->
+
+        <div class="flag">
+
+            <div class="green"></div>
+
+            <div class="yellow">
+                <div class="star">★</div>
+            </div>
+
+            <div class="red"></div>
+
+        </div>
+
+
+        <p>
+            Pipistan Demokrasi Cumhuriyeti 12 Temmuz 2026 da
+            kurulan bi ülkedir kalabalık bir nüfusu olup iyi
+            ekonomili bir ülkedir.
+        </p>
+
+
+        <p class="leaders">
+            Baskanları ise Yağız Alpcan Eymen ve Kadir.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ŞEHİRLER -->
+
+<section id="sehirler">
+
+    <div class="title">
+
+        <small>ŞEHİRLER</small>
+
+        <h2>Pipistan Şehirleri</h2>
+
+    </div>
+
+
+    <div class="cities">
+
+        <div class="city">
+
+            <h3>🏙️ Pistanbul</h3>
+
+            <p>
+                Pipistan'ın başkenti.
+            </p>
+
+        </div>
+
+
+        <div class="city">
+
+            <h3>🏙️ Pinkara</h3>
+
+            <p>
+                Pipistan'ın önemli şehirlerinden biri.
+            </p>
+
+        </div>
+
+
+        <div class="city">
+
+            <h3>🏙️ Doltanya</h3>
+
+            <p>
+                Pipistan'ın önemli şehirlerinden biri.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HARİTA -->
+
+<section class="map-section" id="harita">
+
+    <div class="title">
+
+        <small>COĞRAFYA</small>
+
+        <h2>Pipistan Dünya Haritasında</h2>
+
+    </div>
+
+
+    <p class="map-text">
+        Ülkemiz bu haritada gözükmektedir.
+    </p>
+
+
+    <div class="map">
+
+        <img
+            src="harita.png"
+            alt="Pipistan dünya haritası"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- EKONOMİ -->
+
+<section class="economy" id="ekonomi">
+
+    <div class="title">
+
+        <small>EKONOMİ</small>
+
+        <h2>Pipistan Ekonomisi</h2>
+
+        <p>Para birimi PiLirası</p>
+
+    </div>
+
+
+    <div class="money">
+
+        <div class="money-card">
+
+            <div class="money-icon">💵</div>
+
+            <h3>Dolar</h3>
+
+            <strong>1 Dolar = 2 PiLirası</strong>
+
+        </div>
+
+
+        <div class="money-card">
+
+            <div class="money-icon">💶</div>
+
+            <h3>Euro</h3>
+
+            <strong>1 Euro = 7 PiLirası</strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PİPARTİ -->
+
+<section class="party" id="piparti">
+
+    <div class="party-box">
+
+        <div class="party-logo">
+            Pİ
+        </div>
+
+        <h2>Piparti</h2>
+
+        <p>
+            Halkımız kurulduktan tam 1 gün sonra ülkemiz bir karar alarak
+            parti kurmaya karar verdi.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- TARİH VE FOTOĞRAF -->
+
+<section>
+
+    <div class="title">
+
+        <small>TARİH</small>
+
+        <h2>Pipistan'ın Kuruluşu</h2>
+
+    </div>
+
+
+    <div class="history">
+
+        <p>
+            Pipistan Demokrasi Cumhuriyeti 12 Temmuz 2026 da
+            kurulan bi ülkedir kalabalık bir nüfusu olup iyi
+            ekonomili bir ülkedir.
+        </p>
+
+
+        <br>
+
+
+        <p>
+            Halkımızın ikinci haftasında insanlarımız
+            sevinçlerini bunlarla yaşadılar.
+        </p>
+
+
+        <!-- İKİNCİ GÖRSEL -->
+
+        <img
+            class="history-photo"
+            src="pipistan.jpg"
+            alt="Pipistan halkı"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- PİPİSTAN MARŞI -->
+
+<section class="mars" id="mars">
+
+    <div class="title">
+
+        <small>MİLLÎ MARŞ</small>
+
+        <h2>🎵 Pipistan Marşı</h2>
+
+    </div>
+
+
+    <div class="mars-box">
+
+        <h3>PİPİSTAN MARŞI</h3>
+
+        <p>
+            Pipistan'ın özgün marşı.
+        </p>
+
+
+        <audio controls>
+
+            <source
+                src="pipistan-marsi.mp3"
+                type="audio/mpeg"
+            >
+
+            Tarayıcınız ses oynatmayı desteklemiyor.
+
+        </audio>
+
+    </div>
+
+</section>
+
+
+<!-- İLETİŞİM -->
+
+<section class="contact" id="iletisim">
+
+    <div class="title">
+
+        <small>İLETİŞİM</small>
+
+        <h2>Pipistan İletişim</h2>
+
+        <p>
+            Pipistan ile iletişime geçmek için:
+        </p>alpcanbey17@gmail.com
+
+
+    </div>
+
+
+    <a
+        
+    >
+     
+    </a>
+
+</section>
+
+
+<!-- ALT -->
+
+<footer>
+
+    <p>
+        🇵🇵 <strong>Pipistan Demokrasi Cumhuriyeti</strong>
+    </p>
+
+    <p>
+        © 2026 Pipistan
+    </p>
+
+</footer>
+
+</body>
+</html>
